@@ -3,6 +3,9 @@
 
 <template>
   <main>
-    <h1>Primary Testing...</h1>
+    <h1>Rozinrov</h1>
   </main>
 </template>
+
+<style scoped>
+</style>

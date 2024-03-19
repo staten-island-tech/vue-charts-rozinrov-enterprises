@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 const funds = '100000'
 const stock = ref('')
+const quant = ref()
 
 async function fetchData() {
   const key = 'ed8fa9c810584467a3aee5573443fb41'
@@ -17,7 +18,8 @@ async function fetchData() {
   const apiRealTime = `https://api.twelvedata.com/price?symbol=${stock.value}&apikey=${key}`
   const responseRealTime = await fetch(apiRealTime)
   const realTime = await responseRealTime.json()
-  console.log(realTime.price)
+
+  console.log(realTime.price * quant.value)
 
   //const apiTimeSeries = `https://api.twelvedata.com/time_series?symbol=AAPL&interval=1min&apikey=${key}`
   //const responseTimeSeries = await fetch(apiTimeSeries)
@@ -34,6 +36,7 @@ fetchData()
     <h2>${{ funds.toLocaleString('en-US') }}</h2>
     <form @submit.prevent="fetchData()">
       <input v-model="stock" type="text" id="stock" name="stock" placeholder="Company Name or Ticker"/>
+      <input v-model="quant" type="text" id="quant" name="quant" placeholder="Quantity"/>
       <input type="submit" />
     </form>
   </main>

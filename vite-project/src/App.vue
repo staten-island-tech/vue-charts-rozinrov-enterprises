@@ -10,7 +10,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/data1">Data Center #1</RouterLink>
+        <RouterLink to="/stock-view">Stock Data</RouterLink>
         <RouterLink to="/data2">Data Center #2</RouterLink>
       </nav>
     </div>

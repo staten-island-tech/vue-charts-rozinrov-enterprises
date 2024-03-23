@@ -1,17 +1,21 @@
 <template>
     <div class="container">
-        <h1> {{ stock }} </h1>
-        <h2> ${{ price }} </h2>
+        <h1> {{ name }} {{ ticker }} {{ exchange }}</h1>
+        <h1> {{ price }} </h1>
     </div>
 </template>
 
 <script setup>
 const props = defineProps({
-    stock: Object,
+    name: Object,
+    ticker: Object,
+    exchange: Object,
     price: Object
 })
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.container {
+    text-align: center;
+}
 </style>

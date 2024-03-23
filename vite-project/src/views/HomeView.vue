@@ -13,7 +13,7 @@ function submitForm() {
 
 <template>
   <main>
-    <h1>Rozinrov</h1>
+    <h1>Rozinrov Enterprises</h1>
     <h2>${{ funds.toLocaleString('en-US') }}</h2>
     <form @submit.prevent="submitForm">
       <input v-model="stock" type="text" id="stock" name="stock" placeholder="Company Name or Ticker"/>
@@ -23,4 +23,7 @@ function submitForm() {
 </template>
 
 <style scoped>
+main {
+  text-align: center;
+}
 </style>

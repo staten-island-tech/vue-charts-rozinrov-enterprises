@@ -1,8 +1,7 @@
 <template>
   <div>
-    #turn into for loop
-    <StockDisplay :stock="companyInfo" /> 
-    <StockDisplay :price="realTime.price" />
+    <StockDisplay :name="companyName" :ticker="companyTicker" :exchange="companyExchange" /> 
+    <StockDisplay :price="realTime" />
   </div>
 </template>
 
@@ -12,12 +11,14 @@ import StockDisplay from '@/components/StockDisplay.vue'
 export default {
   data() {
     return {
-      companyInfo: {},
+      companyName: {},
+      companyTicker: {},
+      companyExchange: {},
       realTime: {}
     }
   },
   components: {
-    StockDisplay // Ensure StockDisplay is registered here
+    StockDisplay
   },
   mounted() {
     this.fetchData()
@@ -31,18 +32,21 @@ export default {
       const apiCompanyInfo = `https://api.twelvedata.com/stocks?symbol=${id}&country=United States`
       const responseCompanyInfo = await fetch(apiCompanyInfo)
       const companyInfo = await responseCompanyInfo.json()
-      this.companyInfo = companyInfo.data[0].name
-      console.log(this.companyInfo)
+      this.companyName = companyInfo.data[0].name
+      this.companyTicker = '- ' + companyInfo.data[0].symbol
+      this.companyExchange = '- ' + companyInfo.data[0].exchange
 
       const apiRealTime = `https://api.twelvedata.com/price?symbol=${id}&apikey=${key}`
       const responseRealTime = await fetch(apiRealTime)
       const realTime = await responseRealTime.json()
-      this.realTime = realTime
+      this.realTime = '$' + parseFloat(realTime.price).toFixed(2)
       console.log(this.realTime)
+
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+
 </style>

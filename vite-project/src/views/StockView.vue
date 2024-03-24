@@ -84,10 +84,11 @@ export default {
       const timeInterval = time
       const key = 'ed8fa9c810584467a3aee5573443fb41'
       const id = this.$route.params.id
+
       const apiHistorical = `https://api.twelvedata.com/time_series?&interval=${timeInterval}&symbol=${id}&previous_close=true&format=JSON&start_date=${startYear}-${startMonth}-${startDay} 00:00:00&apikey=${key}`
       const responseHistorical = await fetch(apiHistorical)
       const historical = await responseHistorical.json()
-      this.chartHistory = historical
+      this.chartHistory = historical.values
       console.log(historical)
     },
     toggleBuy() {

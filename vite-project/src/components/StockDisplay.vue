@@ -1,16 +1,19 @@
 <template>
     <div class="container">
         <h1> {{ name }} {{ ticker }} {{ exchange }}</h1>
-        <h1> {{ price }} </h1>
+        <h1> {{ price }} {{ funds }}</h1>
     </div>
 </template>
 
 <script setup>
+import { defineProps } from 'vue'
+
 const props = defineProps({
-    name: Object,
-    ticker: Object,
-    exchange: Object,
-    price: Object
+    name: String,
+    ticker: String,
+    exchange: String,
+    price: Number,
+    funds: Number
 })
 </script>
 

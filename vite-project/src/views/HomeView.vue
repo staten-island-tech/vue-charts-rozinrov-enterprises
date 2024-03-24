@@ -14,6 +14,8 @@ import { useRouter } from 'vue-router'
 
 const store = useStore()
 const funds = computed(() => store.state.funds)
+const history = computed(() => store.state.history)
+console.log(history.value)
 const router = useRouter()
 
 </script>

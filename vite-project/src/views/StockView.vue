@@ -34,6 +34,7 @@ import StockDisplay from '@/components/StockDisplay.vue'
 import SearchForm from '@/components/SearchForm.vue'
 import HistoricalChart from '@/components/HistoricalChart.vue'
 import { computed } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
   data() {
@@ -57,7 +58,7 @@ export default {
   },
   mounted() {
     this.fetchData()
-    this.$watch('$route.params.id', this.fetchData)
+    this.$watch('$route.params.id', this.fetchData, this.dateInterval)
   },
   methods: {
     async fetchData() {
@@ -152,11 +153,14 @@ export default {
           console.log(this.history)
           this.sell = !this.sell
           break
-        } else {
+        } else {i 
           alert('Error... inadequate number of shares currently owned')
         }
         }
-      }
+      } 
+      const store = this.$store
+      this.$store.commit('setHistory', this.history)
+      console.log(store.state)
     }
   }
 }

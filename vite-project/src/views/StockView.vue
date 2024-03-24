@@ -88,8 +88,27 @@ export default {
       const apiHistorical = `https://api.twelvedata.com/time_series?&interval=${timeInterval}&symbol=${id}&previous_close=true&format=JSON&start_date=${startYear}-${startMonth}-${startDay} 00:00:00&apikey=${key}`
       const responseHistorical = await fetch(apiHistorical)
       const historical = await responseHistorical.json()
-      this.chartHistory = historical.values
-      console.log(historical)
+      console.log(historical.values)
+      let chartData = {
+        labels: [],
+        datasets: [
+          {
+            label: 'Historical Share Prices',
+            data: [],
+            fill: false,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+          }
+        ]
+      }
+
+      historical.values.forEach(item => {
+        chartData.labels.push(item.datetime)
+        chartData.datasets[0].data.push(parseFloat(item.close))
+      })
+
+      this.chartHistory = chartData
+      console.log(this.chartHistory)
     },
     toggleBuy() {
       this.buy = !this.buy

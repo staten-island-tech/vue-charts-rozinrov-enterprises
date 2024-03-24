@@ -107,6 +107,8 @@ export default {
         chartData.datasets[0].data.push(parseFloat(item.close))
       })
 
+      chartData.labels.reverse()
+      chartData.datasets[0].data.reverse()
       this.chartHistory = chartData
       console.log(this.chartHistory)
     },
@@ -141,16 +143,18 @@ export default {
       } else {
         alert('Limited spending power...')
       }
-      } else {
-        for (let i = 0; i < this.history.length; i++) {
-          if (this.history[i].id === this.$route.params.id && this.history[i].quantity >= this.quant) {
-            alert('Sale successful!')
-            this.$store.commit('setFunds', spendFunds + total)
-            this.history[i].quantity -= this.quant
-            console.log(this.history)
-            this.sell = !this.sell
-            break
-          }
+    } else {
+      for (let i = 0; i < this.history.length; i++) {
+        if (this.history[i].id === this.$route.params.id && this.history[i].quantity >= this.quant) {
+          alert('Sale successful!')
+          this.$store.commit('setFunds', spendFunds + total)
+          this.history[i].quantity -= this.quant
+          console.log(this.history)
+          this.sell = !this.sell
+          break
+        } else {
+          alert('Error... inadequate number of shares currently owned')
+        }
         }
       }
     }

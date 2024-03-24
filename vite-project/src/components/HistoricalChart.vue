@@ -28,8 +28,10 @@ export default {
 
 <style scoped>
 .container {
-    width: 1000px;
-    height: 300px;
+    width: 2000px;
+    height: 600px;
     margin: auto;
+    justify-content: center;
+    display: flex;
 }
 </style>

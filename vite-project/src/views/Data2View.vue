@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Data Visualization Center #2</h1>
+    <h1>Portfolio</h1>
     <PieChart :chartData="portfolioData" />
   </div>
 </template>
@@ -22,6 +22,7 @@ export default {
     
     const portfolioData = computed(() => {
       const portfolio = {}
+      console.log(portfolio)
 
       
       history.value.forEach(item => {

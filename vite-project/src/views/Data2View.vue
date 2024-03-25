@@ -1,5 +1,8 @@
 <template>
-  <h1>Data Visualization Center #2</h1>
+  <div>
+    <h1>Data Visualization Center #2</h1>
+    <PieChart :chartData="portfolioData" />
+  </div>
 </template>
 
 <script>
@@ -24,9 +27,13 @@ export default {
       
       history.value.forEach(item => {
         if (portfolio[item.id]) {
+          console.log(portfolio[item.id])
           portfolio[item.id] += item.quantity
+          console.log(portfolio[item.id])
         } else {
+          console.log(portfolio[item.id])
           portfolio[item.id] = item.quantity
+          console.log(portfolio[item.id])
         }
       })
 
@@ -38,9 +45,7 @@ export default {
       }]
 
       return { labels, datasets }
-    })
-
-  
+    }) 
     onMounted(() => {
       store.dispatch('loadHistory') 
     })

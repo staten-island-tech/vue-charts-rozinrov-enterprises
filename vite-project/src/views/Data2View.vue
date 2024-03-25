@@ -27,6 +27,7 @@ export default {
       
       history.value.forEach(item => {
         if (portfolio[item.id]) {
+          console.log(portfolio[item.id])
           portfolio[item.id] += item.quantity
         } else {
           portfolio[item.id] = item.quantity

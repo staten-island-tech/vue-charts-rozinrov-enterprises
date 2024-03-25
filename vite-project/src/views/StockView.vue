@@ -59,6 +59,10 @@ export default {
   mounted() {
     this.fetchData()
     this.$watch('$route.params.id', this.fetchData, this.dateInterval)
+    const historyData = localStorage.getItem('history')
+    if (historyData) {
+      this.history = JSON.parse(historyData)
+    }
   },
   methods: {
     async fetchData() {
@@ -158,6 +162,7 @@ export default {
         }
         }
       } 
+      localStorage.setItem('history', JSON.stringify(this.history))
       const store = this.$store
       this.$store.commit('setHistory', this.history)
       console.log(store.state)

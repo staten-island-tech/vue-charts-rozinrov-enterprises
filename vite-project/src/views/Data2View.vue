@@ -1,14 +1,12 @@
 <template>
-  <div>
-    <h1>Portfolio</h1>
-    <PieChart :chartData="portfolioData" />
-  </div>
+  <h1>Data Visualization Center #2</h1>
 </template>
 
 <script>
 import PieChart from '@/components/PiePortfolio.vue'
 import { computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
+
 
 export default {
   name: 'PortfolioView',
@@ -22,12 +20,10 @@ export default {
     
     const portfolioData = computed(() => {
       const portfolio = {}
-      console.log(portfolio)
 
       
       history.value.forEach(item => {
         if (portfolio[item.id]) {
-          console.log(portfolio[item.id])
           portfolio[item.id] += item.quantity
         } else {
           portfolio[item.id] = item.quantity
@@ -53,3 +49,6 @@ export default {
   }
 }
 </script>
+<style>
+
+</style>

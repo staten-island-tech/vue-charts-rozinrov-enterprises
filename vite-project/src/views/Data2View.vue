@@ -46,9 +46,6 @@ export default {
 
       return { labels, datasets }
     }) 
-    onMounted(() => {
-      store.dispatch('loadHistory') 
-    })
 
     return { portfolioData }
   }

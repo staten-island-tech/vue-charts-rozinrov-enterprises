@@ -1,5 +1,28 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+
+import { onMounted, ref } from 'vue'
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
+import router from './router';
+
+const isLoggedIn = ref(false)
+
+onMounted(() => {
+  onAuthStateChanged(getAuth(), (user) => {
+    if (user) {
+      isLoggedIn.value = true
+    } else {
+      isLoggedIn.value = false
+    }
+  })
+})
+
+const handleSignOut = () => {
+  signOut(getAuth()).then(() => {
+    router.push('/sign-in')
+  })
+}
+
 </script>
 
 <template>
@@ -12,8 +35,9 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/stock-view">Stock Data</RouterLink>
         <RouterLink to="/data2">Data Center #2</RouterLink>
-        <RouterLink to="/signin">Sign In</RouterLink>
+        <RouterLink to="/sign-in">Sign In</RouterLink>
         <RouterLink to="/register">Register</RouterLink>
+        <button @click="handleSignOut" v-if="isLoggedIn">Logout</button>
       </nav>
     </div>
   </header>

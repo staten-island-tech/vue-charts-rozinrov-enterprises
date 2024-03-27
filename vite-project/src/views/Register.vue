@@ -11,17 +11,31 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+
 const name = ref('')
 const email = ref('')
 const password = ref('')
 const router = useRouter()
 
 const register = () => {
-    createUserWithEmailAndPassword(getAuth(), email.value, password.value)
-        .then((data) => {
-            console.log('Successfully registered!')
-            router.push('/')
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email.value, password.value)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user
+            // Update profile
+            updateProfile(auth.currentUser, {
+                displayName: name.value
+            }).then(() => {
+                console.log('Successfully registered!')
+                router.push(`/`)
+            }).catch((error) => {
+                console.error('Error updating user profile:', error)
+            })
+        })
+        .catch((error) => {
+            console.error('Error signing up with email and password:', error)
         })
 }
 

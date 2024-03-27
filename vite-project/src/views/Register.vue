@@ -22,9 +22,7 @@ const register = () => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
-            // Signed in 
             const user = userCredential.user
-            // Update profile
             updateProfile(auth.currentUser, {
                 displayName: name.value
             }).then(() => {

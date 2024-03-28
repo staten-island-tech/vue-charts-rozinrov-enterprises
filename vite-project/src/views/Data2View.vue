@@ -23,24 +23,26 @@ export default {
     
     const portfolioData = computed(() => {
       const portfolio = {}
-
+      let totalShares = 0 
       
       history.value.forEach(item => {
+        totalShares += item.quantity
+      })
+
+      history.value.forEach(item => {
         if (portfolio[item.id]) {
-          console.log(portfolio[item.id])
-          portfolio[item.id] += item.quantity
-          console.log(portfolio[item.id])
+          portfolio[item.id].shares += item.quantity
         } else {
-          console.log(portfolio[item.id])
-          portfolio[item.id] = item.quantity
-          console.log(portfolio[item.id])
+          portfolio[item.id] = { shares: item.quantity }
         }
+        portfolio[item.id].percentage = (portfolio[item.id].shares / totalShares) * 100
       })
 
     
       const labels = Object.keys(portfolio)
       const datasets = [{
-        data: Object.values(portfolio),
+        data: Object.values(portfolio).map(item => item.shares),
+        percentage: Object.values(portfolio).map(item => item.percentage),
         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
       }]
 

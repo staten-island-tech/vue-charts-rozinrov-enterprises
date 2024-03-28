@@ -1,10 +1,15 @@
 <template>
     <div class="container">
     <Pie :data="chartData" :options="chartOptions" />
+    <ul>
+      <li v-for="(data, index) in chartData.datasets[0].data" :key="index">
+        {{ data }} Shares ({{ chartData.datasets[0].percentage[index] }}%)
+      </li>
+    </ul>
   </div>
 </template>
   
-  <script>
+<script>
   import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
   import { Pie } from 'vue-chartjs'
   
@@ -20,9 +25,11 @@
     chartOptions: {
       type: Object,
       default: () => {}
-    }
+    },
+    
   }
 }
+
 </script>
 
 <style scoped>

@@ -38,13 +38,17 @@ export default {
         portfolio[item.id].percentage = (portfolio[item.id].shares / totalShares) * 100
       })
 
+      const data = {
+        shares: Object.values(portfolio).map(item => item.shares),
+        percentages: Object.values(portfolio).map(item => item.percentage)}
     
       const labels = Object.keys(portfolio)
       const datasets = [{
-        data: Object.values(portfolio).map(item => item.shares),
-        percentages: Object.values(portfolio).map(item => item.percentage),
+        data: data,
         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
       }]
+
+      console.log(datasets)
       return {labels, datasets}
     }) 
 

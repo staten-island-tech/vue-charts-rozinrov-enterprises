@@ -3,7 +3,7 @@
     <Pie :data="chartData" :options="chartOptions" />
     <ul>
       <li v-for="(data, index) in chartData.datasets[0].data" :key="index">
-        {{ data }} Shares ({{ chartData.datasets[0].percentage[index] }}%)
+        {{ data }} 
       </li>
     </ul>
   </div>
@@ -12,7 +12,6 @@
 <script>
   import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
   import { Pie } from 'vue-chartjs'
-  
   ChartJS.register(ArcElement, Tooltip, Legend)
   export default {
   name: 'PieChart',
@@ -24,11 +23,20 @@
     },
     chartOptions: {
       type: Object,
-      default: () => {}
-    },
+      default: () => ({tooltips: {
+          callbacks: {
+            label: (tooltipItem, data) => {
+              const dataset = data.datasets[tooltipItem.datasetIndex];
+              const total = dataset.data.reduce((acc, value) => acc + value, 0)
+              const value = dataset.data[tooltipItem.index]
+              const percentage = ((value / total) * 100).toFixed(2)
+              return `${value} Shares (${percentage}%)`
+            }
+          }}
+    }),
     
   }
-}
+}}
 
 </script>
 

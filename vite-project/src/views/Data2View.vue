@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Data Visualization Center #2</h1>
-    <PieChart :chartData="portfolioData" />
+    <PieChart :chartData="portfolioData" :chartOptions="chartOptions" />
   </div>
 </template>
 
@@ -42,11 +42,10 @@ export default {
       const labels = Object.keys(portfolio)
       const datasets = [{
         data: Object.values(portfolio).map(item => item.shares),
-        percentage: Object.values(portfolio).map(item => item.percentage),
+        percentages: Object.values(portfolio).map(item => item.percentage),
         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
       }]
-
-      return { labels, datasets }
+      return {labels, datasets}
     }) 
 
     return { portfolioData }

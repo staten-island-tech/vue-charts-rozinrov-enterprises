@@ -3,7 +3,6 @@
     <Pie :data="chartData" :options="chartOptions" />
     <ul>
       <li v-for="(data, index) in chartData.datasets[0].data" :key="index">
-        {{ data }} 
       </li>
     </ul>
   </div>
@@ -35,6 +34,9 @@
           }}
     }),
     
+  },
+  mounted() {
+    console.log(this.chartData);
   }
 }}
 

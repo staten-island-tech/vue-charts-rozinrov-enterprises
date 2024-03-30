@@ -40,11 +40,13 @@ export default {
 
       const data = {
         shares: Object.values(portfolio).map(item => item.shares),
-        percentages: Object.values(portfolio).map(item => item.percentage)}
+        percentages: Object.values(portfolio).map(item => item.percentage)
+      }
     
       const labels = Object.keys(portfolio)
       const datasets = [{
-        data: data,
+        data: data.shares,
+        percentages: Object.values(portfolio).map(item => item.percentage),
         backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
       }]
 

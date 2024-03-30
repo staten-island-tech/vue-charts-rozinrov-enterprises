@@ -23,17 +23,7 @@
     },
     chartOptions: {
       type: Object,
-      default: () => ({tooltips: {
-          callbacks: {
-            label: (tooltipItem, data) => {
-              const dataset = data.datasets[tooltipItem.datasetIndex];
-              const total = dataset.data.reduce((acc, value) => acc + value, 0)
-              const value = dataset.data[tooltipItem.index]
-              const percentage = ((value / total) * 100).toFixed(2)
-              return `${value} Shares (${percentage}%)`
-            }
-          }}
-    }),
+      default: () => ({}),
     
   }
 }}

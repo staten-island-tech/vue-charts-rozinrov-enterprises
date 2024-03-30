@@ -37,4 +37,7 @@
     justify-content: center;
     display: flex;
 }
+.canvas-container text {
+  fill: white !important;
+}
 </style>

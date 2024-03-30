@@ -1,12 +1,24 @@
 <template>
-  <div>
-    <h1>Visual Portfolio</h1>
+  <main class="background"></main>
+  <div class="fade-in margin">
+    <nav>
+        <a><RouterLink to="/">Home</RouterLink></a>
+        <a><RouterLink to="/stock-view">Stock Data</RouterLink></a>
+        <a><RouterLink to="/data2">Data Center #2</RouterLink></a>
+        <a><RouterLink to="/sign-in">Sign In</RouterLink></a>
+        <a><RouterLink to="/register">Register</RouterLink></a>
+        <button id="logout" @click="handleSignOut" v-if="isLoggedIn">Logout</button>
+      </nav>
+      <h1>Visual Portfolio</h1>
     <ul>
+      <p>Percentages</p>
       <li v-for="(item, index) in portfolioData.labels" :key="index">
-        {{ item }} - Shares: {{ portfolioData.datasets[0].data[index] }} - Percentage: {{ portfolioData.datasets[0].percentages[index] }}%
+        {{ item }} - Shares: {{ portfolioData.datasets[0].data[index] }} - Percentage: {{ portfolioData.datasets[0].percentages[index].toFixed(2) }}%
       </li>
     </ul>
+    <div class="pie-chart-container">
     <PieChart :chartData="portfolioData" :chartOptions="chartOptions" />
+  </div>
   </div>
 </template>
 
@@ -88,22 +100,56 @@ main {
 h1, h2 {
   font-size: 56px;
   font-family: 'Kanit';
-  color: black;
+  color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-
-li {font-size: 25px;
+ li {
+  position: relative;
+  padding-left: 15px; 
+  margin-bottom: 10px; 
+  font-size: 20px;
   font-family: 'Kanit';
-  color: black;
+  color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: left;
+}
+
+p {
+  position: relative;
+  padding-left: 20px; 
+  margin-bottom: 10px; 
+  font-size: 25px;
+  font-family: 'Kanit';
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: left;
+}
+
+
+li:before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
 }
 
 .margin {
   margin-top: 15px;
+  text-align: center
 }
 
 .fade-in {
   animation: fade-in 1s ease-in-out forwards;
+}
+
+.pie-chart-container {
+  position: absolute; 
+  margin-top: -200px;
+  display: flex;
+  transform: translateX(-75px);
 }
 
 @keyframes fade-in {
@@ -119,10 +165,11 @@ li {font-size: 25px;
 
 a {
   font-size: 22px;
-  color: black;
+  color: white;
   text-decoration: none;
   transition: all 0.45s;
   margin-right: 30px;
+  text-align: center
 
 }
 

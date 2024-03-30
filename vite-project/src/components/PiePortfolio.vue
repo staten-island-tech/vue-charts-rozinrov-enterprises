@@ -1,11 +1,7 @@
 <template>
     <div class="container">
     <Pie :data="chartData" :options="chartOptions" />
-    <ul>
-      <li v-for="(data, index) in chartData.datasets[0].data" :key="index">
-        {{ data }}
-      </li>
-    </ul>
+      {{ data }}
   </div>
 </template>
   

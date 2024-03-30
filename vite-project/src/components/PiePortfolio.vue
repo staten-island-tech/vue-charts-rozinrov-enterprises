@@ -21,6 +21,7 @@
       type: Object,
       default: () => ({}),
     
+    
   },
   mounted() {
     console.log(this.chartData);
@@ -36,8 +37,13 @@
     margin: auto;
     justify-content: center;
     display: flex;
+    fill: white !important;
 }
 .canvas-container text {
   fill: white !important;
+}
+
+legend {
+  color: white;
 }
 </style>

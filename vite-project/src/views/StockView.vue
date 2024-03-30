@@ -69,7 +69,7 @@ export default {
       const store = this.$store
       this.funds = computed(() => '- $' + store.state.funds.toLocaleString('en-US'))
       const key = 'ed8fa9c810584467a3aee5573443fb41'
-      const id = this.$route.params.id
+      const id = this.$route.params.id.toUpperCase()
       const apiCompanyInfo = `https://api.twelvedata.com/stocks?symbol=${id}&country=United States`
       const responseCompanyInfo = await fetch(apiCompanyInfo)
       const companyInfo = await responseCompanyInfo.json()

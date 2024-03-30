@@ -19,7 +19,17 @@
     },
     chartOptions: {
       type: Object,
-      default: () => ({}),
+      default: () => ({plugins: {
+    legend: {
+      display: true, 
+      position: 'top', 
+      labels: {
+        font: {
+          color: 'white'
+        }
+      }
+    }
+  }}),
     
     
   },

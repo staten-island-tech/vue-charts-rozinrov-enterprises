@@ -83,7 +83,7 @@ main {
   text-align: center;  
   font-family: 'Kanit';
 }
-
+text {color: white;}
 .background {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../public/nyc.png');
   background-size: cover;
@@ -138,7 +138,7 @@ li:before {
 
 .margin {
   margin-top: 15px;
-  text-align: center
+  text-align: center;
 }
 
 .fade-in {

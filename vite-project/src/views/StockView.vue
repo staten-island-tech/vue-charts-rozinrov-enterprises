@@ -70,7 +70,8 @@ export default {
       this.funds = computed(() => '- $' + store.state.funds.toLocaleString('en-US'))
       const key = 'ed8fa9c810584467a3aee5573443fb41'
       const id = this.$route.params.id.toUpperCase()
-      const apiCompanyInfo = `https://api.twelvedata.com/stocks?symbol=${id}&country=United States`
+      console.log(id)
+      const apiCompanyInfo = `https://api.twelvedata.com/stocks?symbol=${id.toUpperCase()}&country=United States`
       const responseCompanyInfo = await fetch(apiCompanyInfo)
       const companyInfo = await responseCompanyInfo.json()
       this.companyName = companyInfo.data[0].name
@@ -133,14 +134,14 @@ export default {
         this.$store.commit('setFunds', spendFunds - total)
         let found = false
         for (let i = 0; i < this.history.length; i++) {
-          if (this.history[i].id === this.$route.params.id) {
+          if (this.history[i].id === this.$route.params.id.toUpperCase()) {
             this.history[i].quantity += this.quant
             found = true
             break
           }
         }
         if (!found) {
-          const action = { id: this.$route.params.id, quantity: this.quant }
+          const action = { id: this.$route.params.id.toUpperCase(), quantity: this.quant }
           this.history.push(action)
         }
         this.buy = !this.buy

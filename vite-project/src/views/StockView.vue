@@ -125,10 +125,12 @@ export default {
       this.sell = !this.sell
     },
     onSubmit() {
+    const currentDate = new Date()
     const total = this.quant * parseFloat(this.realTime.slice(1))
     let spendFunds = parseFloat(this.funds.trim().replace(/[^0-9.]/g, ''))
 
     if (this.buy) {
+      const purchaseDate = currentDate.toLocaleString()
       if (total < spendFunds) {
         alert('Purchase successful!')
         this.$store.commit('setFunds', spendFunds - total)
@@ -136,12 +138,13 @@ export default {
         for (let i = 0; i < this.history.length; i++) {
           if (this.history[i].id === this.$route.params.id.toUpperCase()) {
             this.history[i].quantity += this.quant
+            this.history[i].date = purchaseDate
             found = true
             break
           }
         }
         if (!found) {
-          const action = { id: this.$route.params.id.toUpperCase(), quantity: this.quant }
+          const action = { id: this.$route.params.id.toUpperCase(), quantity: this.quant, date: purchaseDate }
           this.history.push(action)
         }
         this.buy = !this.buy
@@ -155,6 +158,10 @@ export default {
           alert('Sale successful!')
           this.$store.commit('setFunds', spendFunds + total)
           this.history[i].quantity -= this.quant
+          this.history[i].date = currentDate.toLocaleString()
+          if (this.history[i].quantity === 0) {
+          this.history.splice(i, 1);
+        }
           console.log(this.history)
           this.sell = !this.sell
           break

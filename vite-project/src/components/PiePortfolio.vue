@@ -19,17 +19,7 @@
     },
     chartOptions: {
       type: Object,
-      default: () => ({plugins: {
-    legend: {
-      display: true, 
-      position: 'top', 
-      labels: {
-        font: {
-          color: 'white'
-        }
-      }
-    }
-  }}),
+      default: () => ({}),
     
     
   },
@@ -53,7 +43,5 @@
   fill: white !important;
 }
 
-legend {
-  color: white;
-}
+
 </style>

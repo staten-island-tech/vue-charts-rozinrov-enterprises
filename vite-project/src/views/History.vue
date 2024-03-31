@@ -18,10 +18,9 @@
         <div v-for="(purchase, index) in purchaseHistory" :key="index" class="purchase-item">
           <div class="purchase-info">
             <p><strong>Symbol:</strong> {{ purchase.symbol }}</p>
-            <p><strong>Date:</strong> {{ purchase.realTime }}</p>
+            <p><strong>Date:</strong> {{ purchase.date }}</p>
             <p><strong>Action:</strong> {{ purchase.action }}</p>
             <p><strong>Quantity:</strong> {{ purchase.quantity }}</p>
-            <p><strong>Total Amount:</strong> ${{ purchase.total.toFixed(2) }}</p>
           </div>
         </div>
       </div>
@@ -50,7 +49,7 @@
   
       this.purchaseHistory = historyData.map(item => ({
         symbol: item.id,
-        date: item.realTime,
+        date: item.date,
         action: item.quantity > 0 ? 'Buy' : 'Sell',
         quantity: Math.abs(item.quantity)
       }))

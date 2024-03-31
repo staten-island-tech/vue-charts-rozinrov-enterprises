@@ -152,7 +152,7 @@ export default {
       } else {
         alert('Limited spending power...')
       }
-    } else {
+    } if (this.sell) {
       for (let i = 0; i < this.history.length; i++) {
         if (this.history[i].id === this.$route.params.id && this.history[i].quantity >= this.quant) {
           alert('Sale successful!')
@@ -160,7 +160,7 @@ export default {
           this.history[i].quantity -= this.quant
           this.history[i].date = currentDate.toLocaleString()
           if (this.history[i].quantity === 0) {
-          this.history.splice(i, 1);
+          this.history.splice(i, 1)
         }
           console.log(this.history)
           this.sell = !this.sell

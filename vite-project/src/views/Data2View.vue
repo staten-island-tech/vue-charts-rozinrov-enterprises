@@ -1,9 +1,9 @@
 <template>
-  <main class="background"></main>
+  <main class="background">
   <div class="fade-in margin">
     <nav>
         <a><RouterLink to="/">Home</RouterLink></a>
-        <a><RouterLink to="/stock-view">Stock Data</RouterLink></a>
+        <a><RouterLink to="/history">History</RouterLink></a>
         <a><RouterLink to="/data2">Data Center #2</RouterLink></a>
         <a><RouterLink to="/sign-in">Sign In</RouterLink></a>
         <a><RouterLink to="/register">Register</RouterLink></a>
@@ -20,6 +20,7 @@
     <PieChart :chartData="portfolioData" :chartOptions="chartOptions" />
   </div>
   </div>
+</main>
 </template>
 
 <script>
@@ -147,7 +148,7 @@ li:before {
 
 .pie-chart-container {
   position: absolute; 
-  margin-top: -200px;
+  margin-top: -300px;
   display: flex;
   transform: translateX(-75px);
 }

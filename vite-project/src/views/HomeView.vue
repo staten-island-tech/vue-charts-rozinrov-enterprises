@@ -3,7 +3,7 @@
     <div class="fade-in margin">
       <nav>
           <a><RouterLink to="/">Home</RouterLink></a>
-          <a><RouterLink to="/stock-view">Stock Data</RouterLink></a>
+          <a><RouterLink to="/history">History</RouterLink></a>
           <a><RouterLink to="/data2">Data Center #2</RouterLink></a>
           <a><RouterLink to="/sign-in">Sign In</RouterLink></a>
           <a><RouterLink to="/register">Register</RouterLink></a>

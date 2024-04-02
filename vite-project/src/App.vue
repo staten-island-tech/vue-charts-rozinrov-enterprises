@@ -33,7 +33,7 @@ const handleSignOut = () => {
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/stock-view">Stock Data</RouterLink>
+        <RouterLink to="/history">History</RouterLink>
         <RouterLink to="/data2">Data Center #2</RouterLink>
         <RouterLink to="/sign-in">Sign In</RouterLink>
         <RouterLink to="/register">Register</RouterLink>

@@ -34,4 +34,6 @@ export default {
     justify-content: center;
     display: flex;
 }
+
+.container { color:white}
 </style>

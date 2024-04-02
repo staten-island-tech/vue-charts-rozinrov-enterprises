@@ -69,8 +69,9 @@ export default {
       const store = this.$store
       this.funds = computed(() => '- $' + store.state.funds.toLocaleString('en-US'))
       const key = 'ed8fa9c810584467a3aee5573443fb41'
-      const id = this.$route.params.id
-      const apiCompanyInfo = `https://api.twelvedata.com/stocks?symbol=${id}&country=United States`
+      const id = this.$route.params.id.toUpperCase()
+      console.log(id)
+      const apiCompanyInfo = `https://api.twelvedata.com/stocks?symbol=${id.toUpperCase()}&country=United States`
       const responseCompanyInfo = await fetch(apiCompanyInfo)
       const companyInfo = await responseCompanyInfo.json()
       this.companyName = companyInfo.data[0].name
@@ -88,7 +89,7 @@ export default {
       const startDay = day
       const timeInterval = time
       const key = 'ed8fa9c810584467a3aee5573443fb41'
-      const id = this.$route.params.id
+      const id = this.$route.params.id.toUpperCase()
 
       const apiHistorical = `https://api.twelvedata.com/time_series?&interval=${timeInterval}&symbol=${id}&previous_close=true&format=JSON&start_date=${startYear}-${startMonth}-${startDay} 00:00:00&apikey=${key}`
       const responseHistorical = await fetch(apiHistorical)
@@ -124,23 +125,26 @@ export default {
       this.sell = !this.sell
     },
     onSubmit() {
+    const currentDate = new Date()
     const total = this.quant * parseFloat(this.realTime.slice(1))
     let spendFunds = parseFloat(this.funds.trim().replace(/[^0-9.]/g, ''))
 
     if (this.buy) {
+      const purchaseDate = currentDate.toLocaleString()
       if (total < spendFunds) {
         alert('Purchase successful!')
         this.$store.commit('setFunds', spendFunds - total)
         let found = false
         for (let i = 0; i < this.history.length; i++) {
-          if (this.history[i].id === this.$route.params.id) {
+          if (this.history[i].id === this.$route.params.id.toUpperCase()) {
             this.history[i].quantity += this.quant
+            this.history[i].date = purchaseDate
             found = true
             break
           }
         }
         if (!found) {
-          const action = { id: this.$route.params.id, quantity: this.quant }
+          const action = { id: this.$route.params.id.toUpperCase(), quantity: this.quant, date: purchaseDate }
           this.history.push(action)
         }
         this.buy = !this.buy
@@ -148,12 +152,16 @@ export default {
       } else {
         alert('Limited spending power...')
       }
-    } else {
+    } if (this.sell) {
       for (let i = 0; i < this.history.length; i++) {
         if (this.history[i].id === this.$route.params.id && this.history[i].quantity >= this.quant) {
           alert('Sale successful!')
           this.$store.commit('setFunds', spendFunds + total)
           this.history[i].quantity -= this.quant
+          this.history[i].date = currentDate.toLocaleString()
+          if (this.history[i].quantity === 0) {
+          this.history.splice(i, 1)
+        }
           console.log(this.history)
           this.sell = !this.sell
           break

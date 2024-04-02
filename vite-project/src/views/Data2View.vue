@@ -10,15 +10,16 @@
         <button id="logout" @click="handleSignOut" v-if="isLoggedIn">Logout</button>
       </nav>
       <h1>Visual Portfolio</h1>
+      <div class="pie-chart-container">
+    <PieChart :chartData="portfolioData" :chartOptions="chartOptions" />
+  </div>
     <ul>
       <p>Percentages</p>
       <li v-for="(item, index) in portfolioData.labels" :key="index">
         {{ item }} - Shares: {{ portfolioData.datasets[0].data[index] }} - Percentage: {{ portfolioData.datasets[0].percentages[index].toFixed(2) }}%
       </li>
     </ul>
-    <div class="pie-chart-container">
-    <PieChart :chartData="portfolioData" :chartOptions="chartOptions" />
-  </div>
+    
   </div>
 </main>
 </template>

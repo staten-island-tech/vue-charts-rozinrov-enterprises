@@ -148,7 +148,7 @@ li:before {
 
 .pie-chart-container {
   position: absolute; 
-  margin-top: -300px;
+  margin-top: 10px;
   display: flex;
   transform: translateX(-75px);
 }

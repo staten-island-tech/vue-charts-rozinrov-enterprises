@@ -86,7 +86,7 @@ main {
 }
 text {color: white;}
 .background {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../public/nyc.png');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../public/change.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

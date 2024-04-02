@@ -18,8 +18,7 @@
         <div v-for="(purchase, index) in purchaseHistory" :key="index" class="purchase-item">
           <div class="purchase-info">
             <p><strong>Symbol:</strong> {{ purchase.symbol }}</p>
-            <p><strong>Date:</strong> {{ purchase.date }}</p>
-            <p><strong>Action:</strong> {{ purchase.action }}</p>
+            <p><strong>Date Position Updated:</strong> {{ purchase.date }}</p>
             <p><strong>Quantity:</strong> {{ purchase.quantity }}</p>
           </div>
         </div>

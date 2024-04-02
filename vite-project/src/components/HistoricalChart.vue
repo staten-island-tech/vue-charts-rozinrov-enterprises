@@ -35,5 +35,5 @@ export default {
     display: flex;
 }
 
-.container { color:white}
+
 </style>

@@ -19,7 +19,7 @@ onMounted(() => {
 
 const handleSignOut = () => {
   signOut(getAuth()).then(() => {
-    router.push('/sign-in')
+    router.push('/')
   })
 }
 
@@ -32,10 +32,10 @@ const handleSignOut = () => {
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/home">Home</RouterLink>
         <RouterLink to="/history">History</RouterLink>
         <RouterLink to="/data2">Data Center #2</RouterLink>
-        <RouterLink to="/sign-in">Sign In</RouterLink>
+        <RouterLink to="/">Sign In</RouterLink>
         <RouterLink to="/register">Register</RouterLink>
         <button id="logout" @click="handleSignOut" v-if="isLoggedIn">Logout</button>
       </nav>

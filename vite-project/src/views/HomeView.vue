@@ -9,7 +9,7 @@
           <a><RouterLink to="/register">Register</RouterLink></a>
           <button id="logout" @click="handleSignOut" v-if="isLoggedIn">Logout</button>
         </nav>
-      <h1>Welcome to Rozinrov Enterprises {{ name }}!</h1>
+      <h1>Welcome to Investment Enterprises {{ name }}!</h1>
       <h2>${{ funds.toLocaleString('en-US') }}</h2>
       <SearchForm :router="router" />
     </div>
